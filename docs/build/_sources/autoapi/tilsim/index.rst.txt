@@ -1,0 +1,16 @@
+:py:mod:`tilsim`
+================
+
+.. py:module:: tilsim
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   robots/index.rst
+   simulator/index.rst
+
+

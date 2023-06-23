@@ -1,0 +1,37 @@
+use_real_models: false
+use_real_localization: false
+
+# radius in metres to consider robot as having reached a waypoint/goal. 
+# this should be set slightly lower than the server's `local_thres` param.
+REACHED_THRESHOLD_M : 0.25
+
+# angle in degrees between robot's forward vector and heading of waypoint.
+ANGLE_THRESHOLD_DEG : 20.0
+
+# robot radius, used in path planning.
+ROBOT_RADIUS_M : 0.3
+
+
+NLP_MODEL_DIR: 'weights/ContextNet-8x-Stride-RNNT.nemo'
+CV_MODEL_DIR: 'weights/yolo_weights_last.pt'
+REID_MODEL_DIR: 'weights/final_reid_weights.pth'
+SPEAKER_ID_MODEL_DIR: 'weights/TitaNet-L.nemo'
+
+# directory path to save robot's photos to. if relative path doesn't work, try abs path.
+PHOTO_DIR : "imgs"
+
+# Directory in which to unzip zipped folders received from scoring server.
+# Use absolute path.
+ZIP_SAVE_DIR: "temp"
+
+# Number of nav iterations to consider robot as "stuck" on one waypoint.
+STUCK_THRESHOLD : 30
+
+MY_TEAM_NAME: "WELOVEJINGYU"
+
+# Images to re-id                                            
+SUSPECT_IMG : "reid/suspect.jpg"
+HOSTAGE_IMG : "reid/hostage.jpg"
+
+STUCK_THRESHOLD: 30
+

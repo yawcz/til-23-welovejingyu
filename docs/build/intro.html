@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using the TIL SDK &mdash; TIL2023 Finals  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Managing dependencies in an offline environment" href="offline-dependencies.html" />
+    <link rel="prev" title="TIL2023 Robotics Challenge" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TIL2023 Finals
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using the TIL SDK</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-provided-sdk">Using the provided SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="offline-dependencies.html">Managing dependencies in an offline environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TIL2023 Finals</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using the TIL SDK</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-the-til-sdk">
+<h1>Using the TIL SDK<a class="headerlink" href="#using-the-til-sdk" title="Permalink to this heading"></a></h1>
+<p>For the most part you will be importing and using classes provided from the <code class="docutils literal notranslate"><span class="pre">tilsdk</span></code>
+package to develop your code.</p>
+<p>We also include these packages and their source code:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tilsim</span></code>: the simulator</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tilscoring</span></code>: the scoring server</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You are not expected to modify any of the source codes provided in the <code class="docutils literal notranslate"><span class="pre">tilsdk</span></code>, <code class="docutils literal notranslate"><span class="pre">tilscoring</span></code>,
+<code class="docutils literal notranslate"><span class="pre">tilsim</span></code> or packages. Import the relevant classes and functions and use them.</p>
+</div>
+<p>For explanations of the available APIs and how the packages are intended to be used, check out the
+<a class="reference external" href="https://github.com/til-23/til-23-info">to-be-released challenge website</a> and these API docs <a class="reference internal" href="autoapi/index.html"><span class="doc">API Reference</span></a>.</p>
+<p>You are <em>highly encouraged</em> to explore the API reference to understand how to use the core components and
+the optional (potentially helpful) components.</p>
+<section id="using-the-provided-sdk">
+<h2>Using the provided SDK<a class="headerlink" href="#using-the-provided-sdk" title="Permalink to this heading"></a></h2>
+<p>Once the TIL SDK is installed as per the instructions found in the root readme,
+the SDK can be used by importing modules from the <code class="docutils literal notranslate"><span class="pre">tilsdk</span></code> package.
+e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tilsdk.mock_robomaster.robot</span> <span class="kn">import</span> <span class="n">Robot</span>                  <span class="c1"># Use this mock robot for the simulator</span>
+<span class="kn">from</span> <span class="nn">tilsdk.utilities</span> <span class="kn">import</span> <span class="n">PIDController</span><span class="p">,</span> <span class="n">SimpleMovingAverage</span> <span class="c1"># import optional useful things</span>
+<span class="kn">from</span> <span class="nn">tilsdk.reporting</span> <span class="kn">import</span> <span class="n">save_zip</span>                           <span class="c1"># helper function to handle embedded zip file in flask response</span>
+<span class="c1"># you can now call these modules, classes and functions in the rest of your code.</span>
+</pre></div>
+</div>
+<p>These are the main directories you would be working in when developing your autonomous robot
+application on the provided SDK:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config/</span></code>: SDK and Simulator sample configuration files. You should copy these files and modify the config values. you may want to gitignore the contents of this folder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data/</span></code>: Simulator sample data. You should copy and modify these for your own use. you may want to gitignore the contents of this folder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stubs/</span></code>: Code stubs. You should implement the empty stubs - fill it with your code/components for the robot and AI tasks.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="TIL2023 Robotics Challenge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="offline-dependencies.html" class="btn btn-neutral float-right" title="Managing dependencies in an offline environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Defence Science &amp; Technology Agency.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

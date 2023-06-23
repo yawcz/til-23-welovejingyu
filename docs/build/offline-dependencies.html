@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Managing dependencies in an offline environment &mdash; TIL2023 Finals  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="autoapi/index.html" />
+    <link rel="prev" title="Using the TIL SDK" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TIL2023 Finals
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Using the TIL SDK</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Managing dependencies in an offline environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#saving-your-dependencies-into-a-transferrable-format">Saving your dependencies into a transferrable format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-from-packages-stored-offline">Installing from packages stored offline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TIL2023 Finals</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Managing dependencies in an offline environment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/offline-dependencies.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="managing-dependencies-in-an-offline-environment">
+<h1>Managing dependencies in an offline environment<a class="headerlink" href="#managing-dependencies-in-an-offline-environment" title="Permalink to this heading"></a></h1>
+<section id="saving-your-dependencies-into-a-transferrable-format">
+<h2>Saving your dependencies into a transferrable format<a class="headerlink" href="#saving-your-dependencies-into-a-transferrable-format" title="Permalink to this heading"></a></h2>
+<p>Assumptions:</p>
+<ul class="simple">
+<li><p>You have git pulled the til-23-finals repo and your current working directory
+is the til-23-finals repo root</p></li>
+<li><p>you are in an internet-enabled environment</p></li>
+</ul>
+<p><strong>Download all pypi-indexed dependencies for your code</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip download -r path/to/requirements.txt -d /path/to/downloaded/packages
+<span class="c1"># download all third-party dependencies from the pypi index by default</span>
+</pre></div>
+</div>
+<p><strong>Make dist wheel for til-23-finals</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python setup.py bdist_wheel --universal
+<span class="c1"># creates the wheel from the setup.py of the current python project.</span>
+</pre></div>
+</div>
+<p><strong>Transfer til-23-finals wheel file to dest folder</strong></p>
+<p>copy-paste wheel file generated from prev step into target directory of packages.</p>
+<p><strong>Transfer the folder of wheel files to a portable drive</strong></p>
+<p>copy-paste folder of downloaded packages (wheel files) into a portable drive, e.g. a flash drive.</p>
+</section>
+<section id="installing-from-packages-stored-offline">
+<h2>Installing from packages stored offline<a class="headerlink" href="#installing-from-packages-stored-offline" title="Permalink to this heading"></a></h2>
+<p>Now let’s install from the dependency files stored in the portable drive.</p>
+<p>Assumptions:</p>
+<ul class="simple">
+<li><p>You have activited a python virtual environment (recommended)</p></li>
+</ul>
+<p><strong>Install til-23-finals dependencies and your own dependencies</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install --no-index --find-links<span class="o">=</span><span class="s2">&quot;/path/to/downloaded/packages&quot;</span> -r requirements.txt
+</pre></div>
+</div>
+<p><strong>Install til-23-finals package</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install --no-index --find-links<span class="o">=</span><span class="s2">&quot;/path/to/downloaded/packages&quot;</span> til-23-finals
+</pre></div>
+</div>
+<p><strong>Test that the installation of the til-23-finals package is succesful by running these commands</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>til-scoring --help
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>til-simulator --help
+</pre></div>
+</div>
+<p>If the installation was successful, you should see the help messages of these commands.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Using the TIL SDK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="autoapi/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Defence Science &amp; Technology Agency.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+:py:mod:`tilsim.robots`
+=======================
+
+.. py:module:: tilsim.robots
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   tilsim.robots.ActualRobot
+   tilsim.robots.SimRobot
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   tilsim.robots.Rot
+
+
+.. py:class:: ActualRobot(loc_service)
+
+
+   Passthrough for actual robot.
+
+   Uses pose information from a localization service
+   instance and does not perform simulation.
+
+   :param host: Localization service host.
+   :type host: str
+   :param port: Localization service port.
+   :type port: int
+
+   .. py:property:: pose
+
+
+   .. py:method:: step(dt)
+
+      Step the simulation.
+
+      For ActualRobot this gets latest pose from localization service.
+
+      :param dt: Time since last simulation step.
+      :type dt: float
+
+
+
+.. py:data:: Rot
+
+   
+
+.. py:class:: SimRobot(sim_config, timeout = 0.5)
+
+
+   Simulated robot.
+
+   :param sim_config: configuration file from the simulator.
+
+   .. py:property:: last_changed
+      :type: float
+
+
+   .. py:property:: noisy_pose
+
+
+   .. py:property:: pose
+
+
+   .. py:property:: vel
+
+
+   .. py:method:: step(dt)
+
+      Step the simulation.
+
+      :param dt: Time since last simulation step.
+      :type dt: float
+
+
+

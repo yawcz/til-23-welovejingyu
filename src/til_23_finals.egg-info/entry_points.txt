@@ -1,0 +1,4 @@
+[console_scripts]
+til-judge = tilscoring.visualizer:main
+til-scoring = tilscoring.server:main
+til-simulator = tilsim.simulator:main

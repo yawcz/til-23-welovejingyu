@@ -1,0 +1,195 @@
+:py:mod:`tilsdk.reporting`
+==========================
+
+.. py:module:: tilsdk.reporting
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   response_utils/index.rst
+   service/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   tilsdk.reporting.RealPose
+   tilsdk.reporting.ReportingService
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   tilsdk.reporting.save_zip
+   tilsdk.reporting.save_zip
+   tilsdk.reporting.validate_reid_submission
+   tilsdk.reporting.validate_speakerid_submission
+
+
+
+.. py:class:: RealPose
+
+
+   Bases: :py:obj:`NamedTuple`
+
+   Real coordinates (x, y, z) where z is angle from x-axis in deg.
+
+   .. py:attribute:: x
+      :type: float
+
+      X-coordinate.
+
+   .. py:attribute:: y
+      :type: float
+
+      Y-coordinate.
+
+   .. py:attribute:: z
+      :type: float
+
+      Heading angle (rel. x-axis) in degrees.
+
+
+.. py:class:: ReportingService(host = 'localhost', port = 5000)
+
+
+   Communicates with reporting server to submit reports.
+
+   :param host: Hostname or IP address of reporting server.
+   :param port: Port number of reporting server.
+
+   .. py:method:: check_pose(pose)
+
+      Checks the status of the ``pose``.
+
+      :returns: "Goal Reached" if pose is considered near enough to maze's end goal.
+                "Task Checkpoint Reached" if pose is near enough to Task Checkpoint.
+                "Not An Expected Checkpoint" if ``pose`` is not a goal, task or detour checkpoint.
+                A RealPose of (x, y, heading in degrees) representing the next checkpoint if ``pose`` is a detour checkpoint.
+      :rtype: str or RealPose
+
+
+   .. py:method:: end_run()
+
+      Tells the scoring server that the robot is terminating its run.
+      Call this **only** after receiving confirmation from the scoring server that you
+      have reached the maze goal.
+
+
+   .. py:method:: report_audio(pose, answer, save_dir)
+
+      Report answer for the Friend or Foe (Audio) task.
+
+      :param pose: Robot's pose at the time when this corresponding checkpoint's task was being done.
+      :type pose: RealPose
+      :param answer: Answer for the Friend or Foe (Audio) task.
+                     The expected format is <Filename of Audio File w/o file extension>_<Team Name>_<Member ID>
+                     e.g. "audio1_My Team Name is Great_MemberA".
+      :type answer: str
+      :param save_dir: The directory for saving a returned folder of audio files into. The Reporting server
+                       returns some audio files for the next task, "Decoding Digits".
+      :type save_dir: str or Path
+
+      :returns: **save_path** -- The path to the folder of contents retrieved from the server.
+      :rtype: str
+
+
+   .. py:method:: report_digit(pose, answer)
+
+      Report answer for the Decoding Digits task.
+
+      :param pose: Robot pose where targets were seen.
+      :type pose: RealPose
+      :param answer: A tuple of digits representing the digits decoded from a series of audio files.
+      :type answer: Tuple
+
+      :returns: **pose** -- Target pose of the next checkpoint.
+      :rtype: RealPose
+
+
+   .. py:method:: report_situation(img, pose, answer, save_dir)
+
+      Report answer for the Friend or Foe (Visual) task, namely the situation about
+      whether 'hostage' or 'suspect' is in the scene. This method will attempt to receive
+      a zipped folder from the Reporting Server and unzip and save the folder into the
+      ``save_dir``.
+
+      :param img: cv2 image taken by robot and drawn with bounding boxes of detected objects.
+      :type img: ndarray
+      :param pose: Robot's pose at the time when this picture was taken.
+      :type pose: RealPose
+      :param answer: Who is in the scene: "hostage", "suspect" or "none".
+      :type answer: str
+      :param save_dir: The directory for saving the returned folder of audio files into.
+                       The Reporting server returns some audio files for the next task,
+                       "Friend or Foe (Audio)".
+      :type save_dir: str or Path
+
+      :returns: **save_path** -- The path to the folder of contents retrieved from the server.
+      :rtype: str
+
+
+   .. py:method:: start_run()
+
+      Inform scoring server that the robot is starting the run.
+      This **must** be called before making submissions to the scoring server and before the
+      robot starts moving.
+
+
+      :returns: **response** -- http response.
+      :rtype: Flask.response
+
+
+
+.. py:function:: save_zip(dir, response)
+
+   save a zip file from a Flask Response into a local folder.
+
+   :param start: Absolute path of directory for extracting a Flask response's zipped contents into.
+   :type start: Path
+   :param response:
+   :type response: Flask Response that contains a zipped file.
+
+   :returns: Path to folder of unzipped contents.
+   :rtype: output_path
+
+
+.. py:function:: save_zip(dir, response)
+
+   save a zip file from a Flask Response into a local folder.
+
+   :param start: Absolute path of directory for extracting a Flask response's zipped contents into.
+   :type start: Path
+   :param response:
+   :type response: Flask Response that contains a zipped file.
+
+   :returns: Path to folder of unzipped contents.
+   :rtype: output_path
+
+
+.. py:function:: validate_reid_submission(answer)
+
+   Validate string submission for ReID Friend or Foe (Visual) task.
+
+   The expected answer is "hostage", "suspect" or "none".
+
+
+.. py:function:: validate_speakerid_submission(answer)
+
+   Validate string submission for the Friend or Foe (Audio) task.
+   The expected format is <Filename of Audio File w/o file extension>_<Team Name>_<Member ID>
+   e.g. "audio1_My Team Name is Great_MemberA".
+
+

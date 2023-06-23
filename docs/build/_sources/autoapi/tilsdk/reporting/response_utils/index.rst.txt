@@ -1,0 +1,32 @@
+:py:mod:`tilsdk.reporting.response_utils`
+=========================================
+
+.. py:module:: tilsdk.reporting.response_utils
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   tilsdk.reporting.response_utils.save_zip
+
+
+
+.. py:function:: save_zip(dir, response)
+
+   save a zip file from a Flask Response into a local folder.
+
+   :param start: Absolute path of directory for extracting a Flask response's zipped contents into.
+   :type start: Path
+   :param response:
+   :type response: Flask Response that contains a zipped file.
+
+   :returns: Path to folder of unzipped contents.
+   :rtype: output_path
+
+
