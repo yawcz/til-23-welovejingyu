@@ -3,9 +3,13 @@
 Winning code for the Novice category of Brainhack 2023's TIL-AI event.
 
 Models used:
+
 Object Detection: YOLOv6
+
 Re-identification: ResNet152 with Binary Classification
+
 Speaker Identification: TitaNet-L
+
 Automatic Speech Recognition: ContextNet
 
 Model weights can be found at https://drive.google.com/drive/folders/1LGb0pCE1zKgzcZQTmP9bM_vuROoMTeQq?usp=sharing.
